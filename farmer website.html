@@ -1,0 +1,2846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AgriVision AI | Smart Agriculture Assistant</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#f4f8f3;
+    color:#183b22;
+}
+
+/* =========================
+   LANDING PAGE
+========================= */
+
+#landing{
+    min-height:100vh;
+    position:relative;
+    overflow:hidden;
+
+    background:
+    linear-gradient(rgba(3,30,15,.55),rgba(3,30,15,.65)),
+    url("https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=2000&q=90");
+
+    background-size:cover;
+    background-position:center;
+}
+
+nav{
+    height:75px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 7%;
+    background:rgba(0,0,0,.25);
+    backdrop-filter:blur(12px);
+    color:white;
+    position:relative;
+    z-index:5;
+}
+
+.logo{
+    font-size:24px;
+    font-weight:bold;
+}
+
+.logo span{
+    color:#67e08a;
+}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:25px;
+}
+
+.nav-links a{
+    color:white;
+    text-decoration:none;
+}
+
+.nav-btn{
+    padding:10px 20px;
+    border:1px solid rgba(255,255,255,.5);
+    border-radius:25px;
+    background:transparent;
+    color:white;
+    cursor:pointer;
+}
+
+.nav-btn.green{
+    background:#22a652;
+    border:none;
+}
+
+.hero{
+    min-height:calc(100vh - 75px);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:60px 9%;
+    color:white;
+    gap:50px;
+}
+
+.hero-content{
+    max-width:650px;
+}
+
+.tag{
+    color:#6ee58d;
+    font-weight:bold;
+    letter-spacing:3px;
+    margin-bottom:18px;
+}
+
+.hero h1{
+    font-size:65px;
+    line-height:1.05;
+    margin-bottom:25px;
+}
+
+.hero h1 span{
+    color:#67e08a;
+}
+
+.hero p.description{
+    font-size:18px;
+    line-height:1.8;
+    color:#e2ece4;
+    margin-bottom:30px;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:15px;
+}
+
+.primary-btn{
+    padding:15px 28px;
+    border:none;
+    border-radius:30px;
+    background:#23a650;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.secondary-btn{
+    padding:15px 28px;
+    border:1px solid white;
+    border-radius:30px;
+    background:rgba(255,255,255,.1);
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.hero-card{
+    width:350px;
+    padding:35px;
+    border-radius:25px;
+    background:rgba(255,255,255,.13);
+    border:1px solid rgba(255,255,255,.3);
+    backdrop-filter:blur(15px);
+    text-align:center;
+}
+
+.hero-card .big-icon{
+    font-size:70px;
+}
+
+.hero-card h2{
+    margin:15px 0;
+}
+
+.hero-card p{
+    color:#dce9df;
+    line-height:1.6;
+}
+
+.hero-stats{
+    display:flex;
+    justify-content:space-around;
+    margin-top:25px;
+}
+
+.hero-stats strong{
+    display:block;
+    font-size:25px;
+}
+
+.hero-stats small{
+    color:#d8e8dc;
+}
+
+/* =========================
+   LOGIN
+========================= */
+
+.auth-overlay{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:100;
+    background:rgba(0,0,0,.7);
+    backdrop-filter:blur(5px);
+    justify-content:center;
+    align-items:center;
+}
+
+.auth-box{
+    width:410px;
+    max-width:92%;
+    padding:35px;
+    border-radius:22px;
+    background:#263d35;
+    color:white;
+    box-shadow:0 25px 80px rgba(0,0,0,.5);
+    position:relative;
+}
+
+.close{
+    position:absolute;
+    right:20px;
+    top:12px;
+    font-size:30px;
+    cursor:pointer;
+}
+
+.auth-box h2{
+    text-align:center;
+    margin-bottom:8px;
+}
+
+.auth-box .sub{
+    text-align:center;
+    color:#b8c9c0;
+    margin-bottom:25px;
+}
+
+.auth-box label{
+    display:block;
+    margin:10px 0 7px;
+}
+
+.auth-box input{
+    width:100%;
+    padding:13px;
+    border-radius:9px;
+    border:1px solid #71857b;
+    background:#344d43;
+    color:white;
+    outline:none;
+}
+
+.password-wrap{
+    position:relative;
+}
+
+.password-wrap input{
+    padding-right:45px;
+}
+
+.eye{
+    position:absolute;
+    right:14px;
+    top:12px;
+    cursor:pointer;
+}
+
+.captcha{
+    margin-top:15px;
+    padding:13px;
+    border-radius:9px;
+    text-align:center;
+    background:#344d43;
+    color:#73d8ff;
+    font-weight:bold;
+    letter-spacing:2px;
+}
+
+.remember{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin:15px 0;
+    font-size:13px;
+}
+
+.remember label{
+    margin:0;
+    display:flex;
+    gap:7px;
+    align-items:center;
+}
+
+.remember input{
+    width:auto;
+}
+
+.forgot{
+    color:#73d8ff;
+    cursor:pointer;
+}
+
+.auth-buttons{
+    display:flex;
+    gap:10px;
+}
+
+.auth-buttons button{
+    flex:1;
+    padding:13px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    color:white;
+    font-size:15px;
+}
+
+.login-btn{
+    background:#238b45;
+}
+
+.signup-btn{
+    background:#1474bd;
+}
+
+.auth-message{
+    text-align:center;
+    margin-top:15px;
+    color:#83e49b;
+    font-size:14px;
+}
+
+/* =========================
+   DASHBOARD
+========================= */
+
+#dashboard{
+    display:none;
+    min-height:100vh;
+    background:#f4f8f3;
+}
+
+.dashboard-nav{
+    height:70px;
+    background:#153d24;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 4%;
+    position:sticky;
+    top:0;
+    z-index:20;
+}
+
+.dashboard-logo{
+    font-size:22px;
+    font-weight:bold;
+}
+
+.dashboard-user{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.logout{
+    border:none;
+    background:#e64c4c;
+    color:white;
+    padding:9px 18px;
+    border-radius:20px;
+    cursor:pointer;
+}
+
+.dashboard-layout{
+    display:flex;
+}
+
+/* Sidebar */
+
+.sidebar{
+    width:245px;
+    min-height:calc(100vh - 70px);
+    background:#1d4b2d;
+    color:white;
+    padding:25px 15px;
+    position:fixed;
+    left:0;
+    top:70px;
+}
+
+.sidebar-title{
+    color:#8edda0;
+    font-size:12px;
+    letter-spacing:2px;
+    margin:15px;
+}
+
+.sidebar button{
+    width:100%;
+    padding:13px 15px;
+    margin:4px 0;
+    border:none;
+    border-radius:9px;
+    background:transparent;
+    color:white;
+    text-align:left;
+    cursor:pointer;
+    font-size:14px;
+}
+
+.sidebar button:hover,
+.sidebar button.active{
+    background:#2b7042;
+}
+
+/* Main */
+
+.main{
+    margin-left:245px;
+    padding:30px;
+    width:calc(100% - 245px);
+}
+
+.welcome{
+    margin-bottom:25px;
+}
+
+.welcome h1{
+    font-size:30px;
+}
+
+.welcome p{
+    color:#68766c;
+    margin-top:8px;
+}
+
+/* Cards */
+
+.card-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+}
+
+.stat-card{
+    background:white;
+    padding:22px;
+    border-radius:16px;
+    box-shadow:0 5px 20px rgba(0,0,0,.06);
+    border:1px solid #e5eee6;
+}
+
+.stat-card .icon{
+    font-size:28px;
+    margin-bottom:10px;
+}
+
+.stat-card h3{
+    font-size:25px;
+}
+
+.stat-card p{
+    color:#728076;
+    font-size:13px;
+    margin-top:5px;
+}
+
+/* Dashboard sections */
+
+.dashboard-section{
+    margin-top:25px;
+    background:white;
+    border-radius:18px;
+    padding:25px;
+    box-shadow:0 5px 20px rgba(0,0,0,.05);
+}
+
+.dashboard-section h2{
+    margin-bottom:20px;
+}
+
+.quick-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.quick-card{
+    padding:22px;
+    border-radius:14px;
+    background:#f3f9f3;
+    border:1px solid #dfeade;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.quick-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+.quick-card .qicon{
+    font-size:35px;
+    margin-bottom:12px;
+}
+
+.quick-card p{
+    color:#68756c;
+    line-height:1.5;
+    font-size:14px;
+}
+
+/* =========================
+   AI ASSISTANT
+========================= */
+
+.ai-box{
+    display:grid;
+    grid-template-columns:1fr 330px;
+    gap:20px;
+}
+
+.chat-area{
+    height:420px;
+    border:1px solid #e0e8e1;
+    border-radius:15px;
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+}
+
+.chat-header{
+    background:#1d542e;
+    color:white;
+    padding:15px;
+    font-weight:bold;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.messages{
+    flex:1;
+    padding:18px;
+    overflow-y:auto;
+    background:#f7faf7;
+}
+
+.message{
+    max-width:80%;
+    padding:11px 14px;
+    border-radius:13px;
+    margin-bottom:12px;
+    line-height:1.5;
+    font-size:14px;
+}
+
+.bot{
+    background:white;
+    border:1px solid #e1e9e2;
+}
+
+.user{
+    background:#238b45;
+    color:white;
+    margin-left:auto;
+}
+
+.chat-input{
+    display:flex;
+    padding:10px;
+    border-top:1px solid #ddd;
+    gap:8px;
+}
+
+.chat-input input{
+    flex:1;
+    padding:12px;
+    border:1px solid #ccd8ce;
+    border-radius:8px;
+}
+
+.chat-input button{
+    border:none;
+    background:#238b45;
+    color:white;
+    padding:0 16px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.voice-card{
+    background:#183b22;
+    color:white;
+    padding:25px;
+    border-radius:15px;
+}
+
+.voice-circle{
+    width:90px;
+    height:90px;
+    border-radius:50%;
+    background:#238b45;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:40px;
+    margin:25px auto;
+    cursor:pointer;
+}
+
+.voice-card p{
+    color:#cbd9cf;
+    line-height:1.6;
+    font-size:14px;
+}
+
+.voice-status{
+    text-align:center;
+    color:#7ce09a;
+}
+
+/* =========================
+   SOIL ANALYSIS
+========================= */
+
+.analysis-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:25px;
+}
+
+.upload-box{
+    min-height:300px;
+    border:2px dashed #8eb49a;
+    border-radius:15px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    padding:25px;
+    text-align:center;
+    background:#f7fbf7;
+}
+
+.upload-box .camera-icon{
+    font-size:60px;
+    margin-bottom:15px;
+}
+
+.upload-btn{
+    margin-top:15px;
+    background:#238b45;
+    color:white;
+    padding:12px 22px;
+    border-radius:8px;
+    cursor:pointer;
+    display:inline-block;
+}
+
+#preview{
+    max-width:100%;
+    max-height:180px;
+    margin-top:15px;
+    border-radius:10px;
+    display:none;
+}
+
+.analysis-result{
+    background:#f7fbf7;
+    padding:25px;
+    border-radius:15px;
+}
+
+.result-row{
+    display:flex;
+    justify-content:space-between;
+    padding:13px 0;
+    border-bottom:1px solid #dde8df;
+}
+
+.result-row:last-child{
+    border:none;
+}
+
+.good{
+    color:#198c43;
+    font-weight:bold;
+}
+
+/* =========================
+   RECOMMENDATIONS
+========================= */
+
+.recommend-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+}
+
+.recommend-card{
+    padding:22px;
+    border-radius:14px;
+    background:#f7fbf7;
+    border-left:5px solid #238b45;
+}
+
+.recommend-card h3{
+    margin-bottom:10px;
+}
+
+.recommend-card p{
+    color:#657269;
+    line-height:1.7;
+    font-size:14px;
+}
+
+.recommend-card strong{
+    color:#183b22;
+}
+
+.recommend-action{
+    margin-top:14px;
+    padding:10px 14px;
+    border:0;
+    border-radius:8px;
+    background:#238b45;
+    color:white;
+    cursor:pointer;
+    font-weight:bold;
+}
+.recommend-action:hover{background:#176d34}
+.api-result{
+    margin-top:10px;
+    color:#183b22;
+    font-weight:bold;
+    line-height:1.5;
+    overflow-wrap:anywhere;
+}
+.quick-card[role="button"]{cursor:pointer}
+.quick-card[role="button"]:focus{outline:3px solid #238b45;outline-offset:3px}
+
+/* =========================
+   TABLE
+========================= */
+
+.table-wrap{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th,td{
+    padding:14px;
+    border-bottom:1px solid #e2e9e3;
+    text-align:left;
+}
+
+th{
+    background:#edf6ef;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.dashboard-footer{
+    text-align:center;
+    padding:25px;
+    margin-top:30px;
+    color:#718078;
+}
+
+/* =========================
+   LANGUAGE SELECTOR
+========================= */
+
+.lang-select{
+    padding:9px 12px;
+    border-radius:20px;
+    border:1px solid rgba(255,255,255,.5);
+    background:rgba(255,255,255,.1);
+    color:white;
+    cursor:pointer;
+    font-size:13px;
+}
+
+.lang-select option{
+    color:#183b22;
+    background:white;
+}
+
+.dashboard-nav .lang-select{
+    border:1px solid rgba(255,255,255,.4);
+}
+
+.chat-header select{
+    padding:6px 10px;
+    border-radius:15px;
+    border:none;
+    font-size:12px;
+    cursor:pointer;
+}
+
+.speak-toggle{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    font-size:12px;
+    color:#cbd9cf;
+    margin-top:14px;
+    justify-content:center;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:1000px){
+
+    .hero{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .hero-buttons{
+        justify-content:center;
+    }
+
+    .hero h1{
+        font-size:48px;
+    }
+
+    .card-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .quick-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .ai-box,
+    .analysis-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:750px){
+
+    .nav-links a{
+        display:none;
+    }
+
+    .hero{
+        padding:50px 5%;
+    }
+
+    .hero-card{
+        width:100%;
+    }
+
+    .sidebar{
+        display:none;
+    }
+
+    .main{
+        margin-left:0;
+        width:100%;
+        padding:18px;
+    }
+
+    .card-grid,
+    .quick-grid,
+    .recommend-grid{
+        grid-template-columns:1fr;
+    }
+
+    .dashboard-nav{
+        padding:0 15px;
+    }
+
+    .dashboard-user span{
+        display:none;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+
+<!-- =====================================================
+     HOME PAGE
+===================================================== -->
+
+<section id="landing">
+
+<nav>
+
+    <div class="logo">
+        🌱 Agri<span>Vision AI</span>
+    </div>
+
+    <div class="nav-links">
+
+        <a href="#landing">Home</a>
+        <a href="#farmerHelp">Farmer Help</a>
+        <a href="#aboutHome">About</a>
+        <a href="#featuresHome">Features</a>
+
+        <select class="lang-select" id="langSelectHome" onchange="changeLanguage(this.value)">
+            <option value="en">English</option>
+            <option value="hi">हिंदी</option>
+            <option value="te">తెలుగు</option>
+            <option value="ta">தமிழ்</option>
+            <option value="kn">ಕನ್ನಡ</option>
+            <option value="ml">മലയാളം</option>
+        </select>
+
+        <button class="nav-btn" onclick="openLogin()">
+            Login
+        </button>
+
+        <button class="nav-btn green" onclick="openSignup()">
+            Sign Up
+        </button>
+
+    </div>
+
+</nav>
+
+
+<div class="hero">
+
+    <div class="hero-content">
+
+        <div class="tag">
+            AI-POWERED SMART FARMING
+        </div>
+
+        <h1>
+            Intelligent Agriculture
+            <span>For Better Farming.</span>
+        </h1>
+
+        <p class="description">
+
+            An AI-powered Smart Agriculture Assistant that helps
+            farmers choose suitable crops, seeds, fertilizers and
+            pesticides while analyzing soil and detecting crop diseases.
+
+        </p>
+
+        <div class="hero-buttons">
+
+            <button class="primary-btn" onclick="openLogin()">
+                Get Started →
+            </button>
+
+            <button class="secondary-btn"
+                    onclick="document.getElementById('featuresHome').scrollIntoView()">
+                Explore Features
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="hero-card">
+
+        <div class="big-icon">🌾</div>
+
+        <h2>Smart Farming Assistant</h2>
+
+        <p>
+            Use Artificial Intelligence and Machine Learning
+            to make better agricultural decisions.
+        </p>
+
+        <div class="hero-stats">
+
+            <div>
+                <strong>🌱</strong>
+                <small>Crops</small>
+            </div>
+
+            <div>
+                <strong>🧪</strong>
+                <small>Soil</small>
+            </div>
+
+            <div>
+                <strong>📷</strong>
+                <small>AI Scan</small>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div id="featuresHome"
+     style="background:white;color:#183b22;padding:70px 10%;text-align:center;">
+
+    <div class="tag">SMART AGRICULTURE</div>
+
+    <h2 style="font-size:40px;margin-bottom:35px;">
+        Complete Agricultural Assistance
+    </h2>
+
+    <div class="quick-grid">
+
+        <div class="quick-card" role="button" tabindex="0" onclick="openFeatureFromHome('recommend')" onkeydown="if(event.key==='Enter'||event.key===' '){openFeatureFromHome('recommend')}">
+            <div class="qicon">🌱</div>
+            <h3>Crop Recommendation</h3>
+            <p>Find suitable crops according to soil, season and climate.</p>
+        </div>
+
+        <div class="quick-card" role="button" tabindex="0" onclick="openFeatureFromHome('recommend')" onkeydown="if(event.key==='Enter'||event.key===' '){openFeatureFromHome('recommend')}">
+            <div class="qicon">🌾</div>
+            <h3>Seed Recommendation</h3>
+            <p>Identify suitable seeds for different crops and seasons.</p>
+        </div>
+
+        <div class="quick-card" role="button" tabindex="0" onclick="openFeatureFromHome('recommend')" onkeydown="if(event.key==='Enter'||event.key===' '){openFeatureFromHome('recommend')}">
+            <div class="qicon">🧪</div>
+            <h3>Fertilizer Guidance</h3>
+            <p>Get fertilizer suggestions based on soil nutrient conditions.</p>
+        </div>
+
+        <div class="quick-card" role="button" tabindex="0" onclick="openFeatureFromHome('recommend')" onkeydown="if(event.key==='Enter'||event.key===' '){openFeatureFromHome('recommend')}">
+            <div class="qicon">🐛</div>
+            <h3>Pest Management</h3>
+            <p>Receive guidance for pest and disease management.</p>
+        </div>
+
+        <div class="quick-card" role="button" tabindex="0" onclick="openFeatureFromHome('soil')" onkeydown="if(event.key==='Enter'||event.key===' '){openFeatureFromHome('soil')}">
+            <div class="qicon">🧍</div>
+            <h3>Soil Analysis</h3>
+            <p>Analyze soil parameters such as pH, N, P and K.</p>
+        </div>
+
+        <div class="quick-card" role="button" tabindex="0" onclick="openFeatureFromHome('disease')" onkeydown="if(event.key==='Enter'||event.key===' '){openFeatureFromHome('disease')}">
+            <div class="qicon">📷</div>
+            <h3>AI Crop Scan</h3>
+            <p>Upload or capture crop images for AI-based analysis.</p>
+        </div>
+
+    </div>
+
+</div>
+
+
+<div id="farmerHelp"
+     style="padding:70px 10%;background:#f1f9f1;color:#183b22;">
+
+    <div class="tag">FARMER SUPPORT</div>
+
+    <h2 style="font-size:40px;margin-bottom:35px;">
+        Practical Help for Farmers
+    </h2>
+
+    <div class="quick-grid">
+
+        <div class="quick-card" role="button" tabindex="0" onclick="openFeatureFromHome('schedule')" onkeydown="if(event.key==='Enter'||event.key===' '){openFeatureFromHome('schedule')}">
+            <div class="qicon">☁️</div>
+            <h3>Weather Alerts</h3>
+            <p>Plan sowing, irrigation, and harvest based on rainfall and temperature conditions.</p>
+        </div>
+
+        <div class="quick-card" role="button" tabindex="0" onclick="openFeatureFromHome('recommend')" onkeydown="if(event.key==='Enter'||event.key===' '){openFeatureFromHome('recommend')}">
+            <div class="qicon">💧</div>
+            <h3>Irrigation Guidance</h3>
+            <p>Get reminders for watering and moisture checks to save water and improve yields.</p>
+        </div>
+
+        <div class="quick-card" role="button" tabindex="0" onclick="openFeatureFromHome('schedule')" onkeydown="if(event.key==='Enter'||event.key===' '){openFeatureFromHome('schedule')}">
+            <div class="qicon">🌾</div>
+            <h3>Crop Planning</h3>
+            <p>Choose healthy crop varieties and seasonal sowing dates suited to your land.</p>
+        </div>
+
+        <div class="quick-card" role="button" tabindex="0" onclick="openFeatureFromHome('schedule')" onkeydown="if(event.key==='Enter'||event.key===' '){openFeatureFromHome('schedule')}">
+            <div class="qicon">📈</div>
+            <h3>Market Support</h3>
+            <p>Track crop demand, pricing trends, and better selling opportunities for farming income.</p>
+        </div>
+
+        <div class="quick-card" role="button" tabindex="0" onclick="openFeatureFromHome('soil')" onkeydown="if(event.key==='Enter'||event.key===' '){openFeatureFromHome('soil')}">
+            <div class="qicon">🧪</div>
+            <h3>Soil Health</h3>
+            <p>Review pH, nutrient status, and fertilizer recommendations for healthier soil.</p>
+        </div>
+
+        <div class="quick-card" role="button" tabindex="0" onclick="openFeatureFromHome('schedule')" onkeydown="if(event.key==='Enter'||event.key===' '){openFeatureFromHome('schedule')}">
+            <div class="qicon">💰</div>
+            <h3>Subsidy & Finance</h3>
+            <p>Access guidance on government support, inputs, and financial planning for farm needs.</p>
+        </div>
+
+    </div>
+
+</div>
+
+
+<div id="aboutHome"
+     style="padding:70px 10%;background:#edf7ef;color:#183b22;">
+
+    <div class="tag">OUR PROJECT</div>
+
+    <h2 style="font-size:40px;margin-bottom:20px;">
+        Technology for Sustainable Agriculture
+    </h2>
+
+    <p style="max-width:850px;line-height:1.8;color:#627067;">
+
+        AgriVision AI is designed to support farmers with intelligent
+        agricultural recommendations. The system combines soil,
+        crop, seasonal and environmental information to provide
+        useful farming guidance through a simple digital platform.
+
+    </p>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     LOGIN POPUP
+===================================================== -->
+
+<div id="loginOverlay" class="auth-overlay">
+
+<div class="auth-box">
+
+<span class="close" onclick="closeLogin()">×</span>
+
+<h2>🌱 AgriVision AI</h2>
+
+<p class="sub">Smart Agriculture Assistant</p>
+
+<label>Full Name</label>
+
+<input
+    type="text"
+    id="loginName"
+    placeholder="Enter your full name"
+>
+
+
+<label>Phone Number</label>
+
+<input
+    type="tel"
+    id="loginPhone"
+    placeholder="Enter your 10-digit phone number"
+    maxlength="10"
+    inputmode="numeric"
+    pattern="[0-9]{10}"
+>
+
+
+<div class="remember">
+
+<label>
+    <input type="checkbox">
+    Remember Me
+</label>
+
+</div>
+
+
+<div class="auth-buttons">
+
+<button class="login-btn"
+        onclick="login()">
+    Login
+</button>
+
+<button class="signup-btn"
+        onclick="openSignup()">
+    Sign Up
+</button>
+
+</div>
+
+<div id="loginMessage" class="auth-message"></div>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     SIGNUP POPUP
+===================================================== -->
+
+<div id="signupOverlay" class="auth-overlay">
+
+<div class="auth-box">
+
+<span class="close" onclick="closeSignup()">×</span>
+
+<h2>Create Account 🌱</h2>
+
+<p class="sub">
+    Join AgriVision AI
+</p>
+
+<label>Full Name</label>
+
+<input
+    type="text"
+    id="signupName"
+    placeholder="Enter your full name"
+>
+
+
+<label>Email Address</label>
+
+<input
+    type="email"
+    id="signupEmail"
+    placeholder="Enter your email"
+>
+
+
+<label>Password</label>
+
+<input
+    type="password"
+    id="signupPassword"
+    placeholder="Create password"
+>
+
+
+<label>Confirm Password</label>
+
+<input
+    type="password"
+    id="signupConfirm"
+    placeholder="Confirm password"
+>
+
+
+<button class="login-btn"
+        style="width:100%;margin-top:20px;padding:13px;border:none;border-radius:8px;color:white;cursor:pointer;"
+        onclick="createAccount()">
+
+    Create Account
+
+</button>
+
+<div id="signupMessage" class="auth-message"></div>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     DASHBOARD
+===================================================== -->
+
+<section id="dashboard">
+
+<div class="dashboard-nav">
+
+    <div class="dashboard-logo">
+        🌱 AgriVision AI
+    </div>
+
+    <div class="dashboard-user">
+
+        <select class="lang-select" id="langSelectDash" onchange="changeLanguage(this.value)">
+            <option value="en">English</option>
+            <option value="hi">हिंदी</option>
+            <option value="te">తెలుగు</option>
+            <option value="ta">தமிழ்</option>
+            <option value="kn">ಕನ್ನಡ</option>
+            <option value="ml">മലయാളം</option>
+        </select>
+
+        <span id="userName">
+            Farmer
+        </span>
+
+        <button class="logout"
+                onclick="logout()">
+            Logout
+        </button>
+
+    </div>
+
+</div>
+
+
+<div class="dashboard-layout">
+
+
+<!-- SIDEBAR -->
+
+<aside class="sidebar">
+
+    <div class="sidebar-title">
+        MAIN MENU
+    </div>
+
+    <button class="active"
+            onclick="showSection('overview')">
+        📊 Dashboard
+    </button>
+
+    <button onclick="showSection('ai')">
+        🤖 AI Assistant
+    </button>
+
+    <button onclick="showSection('soil')">
+        🧍 Soil Analysis
+    </button>
+
+    <button onclick="showSection('recommend')">
+        🌱 Recommendations
+    </button>
+
+    <button onclick="showSection('disease')">
+        📷 Disease Detection
+    </button>
+
+    <button onclick="showSection('schedule')">
+        📅 Farming Calendar
+    </button>
+
+    <div class="sidebar-title">
+        INFORMATION
+    </div>
+
+    <button onclick="alert('Weather module can be connected to a weather API.')">
+        ☁ Weather
+    </button>
+
+    <button onclick="alert('Market module can be connected to a live agricultural market API.')">
+        📈 Market Prices
+    </button>
+
+</aside>
+
+
+<!-- MAIN CONTENT -->
+
+<main class="main">
+
+
+<!-- OVERVIEW -->
+
+<div id="overview" class="dash-section">
+
+<div class="welcome">
+
+<h1>
+    Welcome to Smart Agriculture 🌱
+</h1>
+
+<p>
+    Your intelligent farming assistant for better agricultural decisions.
+</p>
+
+</div>
+
+
+<div class="card-grid">
+
+<div class="stat-card">
+    <div class="icon">🌱</div>
+    <h3>12+</h3>
+    <p>Crop Categories</p>
+</div>
+
+<div class="stat-card">
+    <div class="icon">🧍</div>
+    <h3>6</h3>
+    <p>Soil Types</p>
+</div>
+
+<div class="stat-card">
+    <div class="icon">🧪</div>
+    <h3>24+</h3>
+    <p>Fertilizer Guides</p>
+</div>
+
+<div class="stat-card">
+    <div class="icon">🐛</div>
+    <h3>30+</h3>
+    <p>Disease Guides</p>
+</div>
+
+</div>
+
+
+<div class="dashboard-section">
+
+<h2>
+    Smart Agriculture Tools
+</h2>
+
+<div class="quick-grid">
+
+<div class="quick-card"
+     onclick="showSection('soil')">
+
+<div class="qicon">📷</div>
+
+<h3>
+    Scan Soil / Crop
+</h3>
+
+<p>
+    Upload an image or use a camera to begin analysis.
+</p>
+
+</div>
+
+
+<div class="quick-card"
+     onclick="showSection('recommend')">
+
+<div class="qicon">🌾</div>
+
+<h3>
+    Find Best Crop
+</h3>
+
+<p>
+    Get crop and seed recommendations according to conditions.
+</p>
+
+</div>
+
+
+<div class="quick-card"
+     onclick="showSection('ai')">
+
+<div class="qicon">🎤</div>
+
+<h3>
+    Talk to AI Assistant
+</h3>
+
+<p>
+    Ask agriculture-related questions using text or voice.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- AI ASSISTANT -->
+
+<div id="ai" class="dash-section" style="display:none">
+
+<div class="welcome">
+
+<h1>🤖 AI Agriculture Assistant</h1>
+
+<p>
+    Ask questions about crops, soil, seeds, fertilizers and farming.
+</p>
+
+</div>
+
+
+<div class="ai-box">
+
+<div class="chat-area">
+
+<div class="chat-header">
+    <span>🌱 AgriVision AI Assistant</span>
+</div>
+
+<div class="messages" id="messages">
+
+<div class="message bot">
+
+Hello! 👋 I am your Smart Agriculture Assistant.
+<br><br>
+You can ask me:
+<br>
+• Which crop is suitable for black soil?
+<br>
+• Which fertilizer should I use?
+<br>
+• When should I sow paddy?
+<br>
+• Which seeds are suitable?
+<br>
+• How can I manage pests?
+
+</div>
+
+</div>
+
+
+<div class="chat-input">
+
+<input
+    type="text"
+    id="chatInput"
+    placeholder="Ask your agriculture question..."
+    onkeydown="if(event.key==='Enter') sendMessage()"
+>
+
+<button onclick="sendMessage()">
+    Send
+</button>
+
+</div>
+
+</div>
+
+
+<div class="voice-card">
+
+<h2>
+    🎤 Voice Assistant
+</h2>
+
+<div class="voice-circle"
+     onclick="startVoice()">
+
+    🎙️
+
+</div>
+
+<p>
+    Just tap the microphone and speak in your own language —
+    Telugu, Tamil, Hindi, Kannada, Malayalam or English.
+    No need to select anything. The AI will recognize your
+    language automatically and reply to you by voice.
+</p>
+
+<div class="voice-status"
+     id="voiceStatus">
+
+    Ready to listen
+
+</div>
+
+<div class="speak-toggle">
+    <input type="checkbox" id="speakToggle" checked>
+    <label for="speakToggle">Speak AI answers aloud</label>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- SOIL ANALYSIS -->
+
+<div id="soil" class="dash-section" style="display:none">
+
+<div class="welcome">
+
+<h1>🧍 AI Soil & Crop Analysis</h1>
+
+<p>
+    Upload a soil or crop image for demonstration analysis.
+</p>
+
+</div>
+
+
+<div class="analysis-grid">
+
+
+<div class="upload-box">
+
+<div class="camera-icon">
+    📷
+</div>
+
+<h2>
+    Upload / Capture Image
+</h2>
+
+<p style="color:#68756c;margin-top:10px;">
+    Take a clear photo of soil or crop.
+</p>
+
+<label class="upload-btn">
+
+    Select Image
+
+    <input
+        type="file"
+        accept="image/*"
+        capture="environment"
+        onchange="analyzeImage(event)"
+        style="display:none"
+    >
+
+</label>
+
+<img id="preview">
+
+</div>
+
+
+<div class="analysis-result">
+
+<h2>
+    Analysis Result
+</h2>
+
+<div class="result-row">
+    <span>Detected Soil</span>
+    <strong id="soilType"
+            class="good">
+        Waiting...
+    </strong>
+</div>
+
+<div class="result-row">
+    <span>Soil pH</span>
+    <strong id="soilPH">
+        --
+    </strong>
+</div>
+
+<div class="result-row">
+    <span>Nitrogen (N)</span>
+    <strong id="nitrogen">
+        --
+    </strong>
+</div>
+
+<div class="result-row">
+    <span>Phosphorus (P)</span>
+    <strong id="phosphorus">
+        --
+    </strong>
+</div>
+
+<div class="result-row">
+    <span>Potassium (K)</span>
+    <strong id="potassium">
+        --
+    </strong>
+</div>
+
+<div class="result-row">
+    <span>Recommended Crop</span>
+    <strong id="cropResult"
+            class="good">
+        --
+    </strong>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- RECOMMENDATION -->
+
+<div id="recommend" class="dash-section" style="display:none">
+
+<div class="welcome">
+
+<h1>🌱 Smart Recommendations</h1>
+
+<p>
+    Agricultural recommendations based on selected soil conditions.
+</p>
+
+</div>
+
+
+<div class="recommend-grid">
+
+<div class="recommend-card">
+
+<h3>🧍 Soil Type</h3>
+
+<p>
+    <strong>Black Soil</strong><br>
+    Suitable for crops such as cotton, soybean,
+    wheat and selected pulses.
+</p>
+
+</div>
+
+
+<div class="recommend-card">
+
+<h3>🌾 Seed Recommendation</h3>
+
+<p>
+    Select certified and region-suitable seed varieties.
+    Seed selection should consider soil, rainfall,
+    temperature and crop duration.
+</p>
+
+</div>
+
+
+<div class="recommend-card">
+
+<h3>🧪 Fertilizer Recommendation</h3>
+
+<p>
+    Use soil-test results to determine fertilizer needs.
+    Nitrogen, phosphorus and potassium requirements
+    vary by crop and soil condition.
+</p>
+
+</div>
+
+
+<div class="recommend-card">
+
+<h3>🐛 Pest Management</h3>
+
+<p>
+    Monitor crops regularly for pest symptoms.
+    Use integrated pest management and follow
+    recommended agricultural practices.
+</p>
+
+</div>
+
+
+<div class="recommend-card">
+
+<h3>💧 Irrigation Guidance</h3>
+
+<p>
+    Irrigation timing depends on crop growth stage,
+    soil moisture, rainfall and local climate.
+</p>
+
+</div>
+
+
+<div class="recommend-card">
+
+<h3>📅 Sowing Season</h3>
+
+<p>
+    Sowing dates depend on crop, region,
+    rainfall pattern and local agricultural calendar.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- DISEASE DETECTION -->
+
+<div id="disease" class="dash-section" style="display:none">
+
+<div class="welcome">
+
+<h1>📷 AI Crop Disease Detection</h1>
+
+<p>
+    Upload a crop leaf image for demonstration.
+</p>
+
+</div>
+
+
+<div class="analysis-grid">
+
+<div class="upload-box">
+
+<div class="camera-icon">
+    🌿
+</div>
+
+<h2>
+    Scan Crop Leaf
+</h2>
+
+<p style="color:#68756c;margin-top:10px;">
+    Capture a clear image of the affected leaf.
+</p>
+
+<label class="upload-btn">
+
+    Upload Crop Image
+
+    <input
+        type="file"
+        accept="image/*"
+        capture="environment"
+        onchange="diseaseScan(event)"
+        style="display:none"
+    >
+
+</label>
+
+</div>
+
+
+<div class="analysis-result">
+
+<h2>
+    Disease Analysis
+</h2>
+
+<div class="result-row">
+    <span>Status</span>
+    <strong id="diseaseStatus"
+            class="good">
+        Waiting for image
+    </strong>
+</div>
+
+<div class="result-row">
+    <span>Crop</span>
+    <strong id="diseaseCrop">
+        --
+    </strong>
+</div>
+
+<div class="result-row">
+    <span>Possible Issue</span>
+    <strong id="diseaseName">
+        --
+    </strong>
+</div>
+
+<div class="result-row">
+    <span>Management</span>
+    <strong id="diseaseAdvice">
+        --
+    </strong>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- FARMING CALENDAR -->
+
+<div id="schedule" class="dash-section" style="display:none">
+
+<div class="welcome">
+
+<h1>📅 Smart Farming Calendar</h1>
+
+<p>
+    Example agricultural planning guide.
+</p>
+
+</div>
+
+
+<div class="dashboard-section">
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+    <th>Crop</th>
+    <th>Season</th>
+    <th>Seed</th>
+    <th>Soil</th>
+    <th>Major Nutrients</th>
+    <th>Activity</th>
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+    <td>Paddy</td>
+    <td>Kharif / Regional seasons</td>
+    <td>Certified paddy seed</td>
+    <td>Clay / Loamy</td>
+    <td>N, P, K</td>
+    <td>Nursery & transplanting</td>
+</tr>
+
+<tr>
+    <td>Wheat</td>
+    <td>Rabi</td>
+    <td>Certified wheat seed</td>
+    <td>Loamy</td>
+    <td>N, P, K</td>
+    <td>Sowing</td>
+</tr>
+
+<tr>
+    <td>Cotton</td>
+    <td>Kharif</td>
+    <td>Certified cotton seed</td>
+    <td>Black soil</td>
+    <td>N, P, K</td>
+    <td>Planting</td>
+</tr>
+
+<tr>
+    <td>Groundnut</td>
+    <td>Kharif / Regional seasons</td>
+    <td>Certified seed</td>
+    <td>Sandy / Loamy</td>
+    <td>P, K, Ca</td>
+    <td>Sowing</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="dashboard-footer">
+
+    🌱 AgriVision AI — AI-Powered Smart Agriculture Assistant
+    <br>
+    <small>
+        Academic Minor Project • 2026
+    </small>
+
+</div>
+
+
+</main>
+
+</div>
+
+</section>
+
+
+<script>
+
+/* =====================================================
+   AUTO SESSION TIMEOUT (40 MINUTES)
+===================================================== */
+
+const SESSION_LIMIT_MS = 40 * 60 * 1000; // 40 minutes
+
+let sessionTimer = setTimeout(endSession, SESSION_LIMIT_MS);
+
+function endSession(){
+
+    // Speak the notice in whatever language the farmer was using
+    speak(T("sessionExpired"));
+
+    // Return to the landing page / log out of the dashboard
+    logout();
+
+    // Replace the page with a plain "session ended" screen and try
+    // to close the tab. Most browsers block window.close() on tabs
+    // that were not opened by a script, so the on-screen message is
+    // the reliable part - the close attempt is a bonus.
+    setTimeout(function(){
+
+        document.body.innerHTML =
+            '<div style="min-height:100vh;display:flex;align-items:center;' +
+            'justify-content:center;text-align:center;padding:40px;' +
+            'background:#153d24;color:white;font-size:20px;line-height:1.7;">' +
+            T("sessionExpired") +
+            '</div>';
+
+        try{ window.close(); }catch(e){}
+
+    }, 6000); // small delay so the spoken notice can finish
+
+}
+
+function resetSessionTimer(){
+    clearTimeout(sessionTimer);
+    sessionTimer = setTimeout(endSession, SESSION_LIMIT_MS);
+}
+
+
+/* =====================================================
+   LOGIN
+===================================================== */
+
+function openLogin(){
+
+    document.getElementById("loginOverlay").style.display="flex";
+
+}
+
+function closeLogin(){
+
+    document.getElementById("loginOverlay").style.display="none";
+
+}
+
+// Landing-page feature cards ask the user to log in first.
+// After login, the chosen dashboard section opens automatically.
+let requestedFeature = "overview";
+
+function openFeatureFromHome(section){
+    requestedFeature = section || "overview";
+    openLogin();
+}
+
+function getRecommendation(endpoint, resultId){
+    const result = document.getElementById(resultId);
+    if(!result) return;
+
+    result.textContent = "Loading...";
+
+    fetch("http://localhost:8080" + endpoint)
+        .then(async response => {
+            const body = await response.text();
+            if(!response.ok) throw new Error(body || "HTTP " + response.status);
+            return body;
+        })
+        .then(data => {
+            result.textContent = data;
+        })
+        .catch(error => {
+            console.error("API request failed:", error);
+            result.textContent = "Could not load this recommendation. Check that the backend is running and the endpoint exists: " + endpoint;
+        });
+}
+
+
+function login(){
+
+    const name =
+        document.getElementById("loginName").value.trim();
+
+    const phone =
+        document.getElementById("loginPhone").value.trim();
+
+    const message =
+        document.getElementById("loginMessage");
+
+
+    if(!name || !phone){
+
+        message.innerText =
+            "Please enter your name and phone number.";
+
+        return;
+
+    }
+
+    if(!/^[0-9]{10}$/.test(phone)){
+
+        message.innerText =
+            "Please enter a valid 10-digit phone number.";
+
+        return;
+
+    }
+
+
+    message.innerText =
+        "Login successful! Opening dashboard...";
+
+
+    setTimeout(function(){
+
+        document.getElementById("loginOverlay").style.display="none";
+
+        document.getElementById("landing").style.display="none";
+
+        document.getElementById("dashboard").style.display="block";
+
+        document.getElementById("userName").innerText =
+            name;
+
+        showSection(requestedFeature);
+        requestedFeature = "overview";
+
+    },700);
+
+}
+
+
+/* =====================================================
+   SIGN UP
+===================================================== */
+
+function openSignup(){
+
+    document.getElementById("loginOverlay").style.display="none";
+
+    document.getElementById("signupOverlay").style.display="flex";
+
+}
+
+function closeSignup(){
+
+    document.getElementById("signupOverlay").style.display="none";
+
+}
+
+
+function createAccount(){
+
+    const name =
+        document.getElementById("signupName").value;
+
+    const email =
+        document.getElementById("signupEmail").value;
+
+    const password =
+        document.getElementById("signupPassword").value;
+
+    const confirm =
+        document.getElementById("signupConfirm").value;
+
+    const message =
+        document.getElementById("signupMessage");
+
+
+    if(!name || !email || !password || !confirm){
+
+        message.innerText =
+            "Please fill all fields.";
+
+        return;
+
+    }
+
+    if(password !== confirm){
+
+        message.innerText =
+            "Passwords do not match.";
+
+        return;
+
+    }
+
+
+    message.innerText =
+        "Account created successfully!";
+
+    setTimeout(function(){
+
+        closeSignup();
+
+        openLogin();
+
+    },1000);
+
+}
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+function logout(){
+
+    document.getElementById("dashboard").style.display="none";
+
+    document.getElementById("landing").style.display="block";
+
+}
+
+
+/* =====================================================
+   DASHBOARD NAVIGATION
+===================================================== */
+
+function showSection(section){
+
+    const sections =
+        document.querySelectorAll(".dash-section");
+
+    sections.forEach(function(item){
+
+        item.style.display="none";
+
+    });
+
+
+    document.getElementById(section).style.display="block";
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+/* =====================================================
+   LANGUAGE + VOICE SETUP
+===================================================== */
+
+let currentLang = "en";
+
+// BCP-47 codes used for both speech recognition (mic input)
+// and speech synthesis (AI speaking back to the farmer)
+const speechLangMap = {
+    en: "en-IN",
+    hi: "hi-IN",
+    te: "te-IN",
+    ta: "ta-IN",
+    kn: "kn-IN",
+    ml: "ml-IN"
+};
+
+function changeLanguage(lang){
+    setLanguage(lang, true);
+}
+
+// setLanguage updates the active language everywhere.
+// resetGreeting=true is used when a person deliberately picks a
+// language from the dropdown. resetGreeting=false is used when the
+// AI silently detects the language from the farmer's own voice, so
+// it does not wipe an ongoing conversation.
+function setLanguage(lang, resetGreeting){
+
+    currentLang = lang;
+
+    const homeSel = document.getElementById("langSelectHome");
+    const dashSel = document.getElementById("langSelectDash");
+    if(homeSel) homeSel.value = lang;
+    if(dashSel) dashSel.value = lang;
+
+    if(resetGreeting){
+        const messages = document.getElementById("messages");
+        if(messages){
+            messages.innerHTML = "";
+            addMessage(T("greeting"), "bot");
+        }
+    }
+
+}
+
+// detectScriptLang looks at the actual characters the speech engine
+// returned and figures out which language was spoken, purely from
+// the Unicode script. This is what lets a farmer speak Telugu, Tamil,
+// Hindi, Kannada or Malayalam WITHOUT ever touching the language
+// dropdown - the AI figures it out on its own from their voice.
+function detectScriptLang(text){
+    if(/[\u0C00-\u0C7F]/.test(text)) return "te"; // Telugu
+    if(/[\u0B80-\u0BFF]/.test(text)) return "ta"; // Tamil
+    if(/[\u0C80-\u0CFF]/.test(text)) return "kn"; // Kannada
+    if(/[\u0D00-\u0D7F]/.test(text)) return "ml"; // Malayalam
+    if(/[\u0900-\u097F]/.test(text)) return "hi"; // Devanagari / Hindi
+    return "en";
+}
+
+// speak(text) reads text aloud in the currently selected language
+function speak(text){
+
+    const toggle = document.getElementById("speakToggle");
+    if(toggle && !toggle.checked) return;
+
+    if(!("speechSynthesis" in window)) return;
+
+    window.speechSynthesis.cancel();
+
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = speechLangMap[currentLang] || "en-IN";
+    utter.rate = 0.95;
+
+    window.speechSynthesis.speak(utter);
+
+}
+
+/* =====================================================
+   TRANSLATIONS
+   (greeting, chat answers, and spoken farmer instructions
+   for soil analysis and disease detection)
+===================================================== */
+
+const translations = {
+
+    greeting: {
+        en: "Hello! I am your Smart Agriculture Assistant. You can ask me: which crop suits black soil, which fertilizer to use, when to sow paddy, which seeds to use, or how to manage pests.",
+        hi: "नमस्ते! मैं आपका स्मार्ट कृषि सहायक हूं। आप मुझसे पूछ सकते हैं: काली मिट्टी के लिए कौन सी फसल उपयुक्त है, कौन सा उर्वरक उपयोग करें, धान कब बोएं, कौन से बीज उपयोग करें, या कीटों का प्रबंधन कैसे करें।",
+        te: "నమస్కారం! నేను మీ స్మార్ట్ వ్యవసాయ సహాయకుడిని. మీరు నన్ను అడగవచ్చు: నల్ల నేలకు ఏ పంట సరిపోతుంది, ఏ ఎరువు వాడాలి, వరి ఎప్పుడు నాటాలి, ఏ విత్తనాలు వాడాలి, లేదా పురుగుల నివారణ ఎలా చేయాలి.",
+        ta: "வணக்கம்! நான் உங்கள் ஸ்மார்ட் விவசாய உதவியாளர். கருப்பு மண்ணுக்கு எந்த பயிர் ஏற்றது, எந்த உரம் பயன்படுத்த வேண்டும், நெல் எப்போது நடவு செய்ய வேண்டும், எந்த விதைகள் பயன்படுத்த வேண்டும், அல்லது பூச்சிகளை எப்படி கட்டுப்படுத்துவது என்று என்னிடம் கேளுங்கள்.",
+        kn: "ನಮಸ್ಕಾರ! ನಾನು ನಿಮ್ಮ ಸ್ಮಾರ್ಟ್ ಕೃಷಿ ಸಹಾಯಕ. ಕಪ್ಪು ಮಣ್ಣಿಗೆ ಯಾವ ಬೆಳೆ ಸೂಕ್ತ, ಯಾವ ಗೊಬ್ಬರ ಬಳಸಬೇಕು, ಭತ್ತವನ್ನು ಯಾವಾಗ ನಾಟಿ ಮಾಡಬೇಕು, ಯಾವ ಬೀಜ ಬಳಸಬೇಕು, ಅಥವಾ ಕೀಟಗಳನ್ನು ಹೇಗೆ ನಿಯಂತ್ರಿಸಬೇಕು ಎಂದು ನನ್ನನ್ನು ಕೇಳಬಹುದು.",
+        ml: "നമസ്കാരം! ഞാൻ നിങ്ങളുടെ സ്മാർട്ട് കാർഷിക സഹായിയാണ്. കറുത്ത മണ്ണിന് ഏത് വിള അനുയോജ്യം, ഏത് വളം ഉപയോഗിക്കണം, നെല്ല് എപ്പോൾ നടണം, ഏത് വിത്ത് ഉപയോഗിക്കണം, അല്ലെങ്കിൽ കീടങ്ങളെ എങ്ങനെ നിയന്ത്രിക്കാം എന്ന് എന്നോട് ചോദിക്കാം."
+    },
+
+    blackSoil: {
+        en: "Black soil is generally suitable for cotton, soybean, wheat and some pulses. Confirm with a local soil test before sowing.",
+        hi: "काली मिट्टी सामान्यतः कपास, सोयाबीन, गेहूं और कुछ दलहनी फसलों के लिए उपयुक्त होती है। बुवाई से पहले स्थानीय मिट्टी परीक्षण से पुष्टि करें।",
+        te: "నల్ల నేల సాధారణంగా పత్తి, సోయాబీన్, గోధుమ మరియు కొన్ని పప్పు పంటలకు అనుకూలంగా ఉంటుంది. విత్తే ముందు స్థానిక మట్టి పరీక్ష ద్వారా నిర్ధారించుకోండి.",
+        ta: "கருப்பு மண் பொதுவாக பருத்தி, சோயாபீன், கோதுமை மற்றும் சில பருப்பு வகைகளுக்கு ஏற்றது. விதைப்பதற்கு முன் உள்ளூர் மண் பரிசோதனை மூலம் உறுதிப்படுத்தவும்.",
+        kn: "ಕಪ್ಪು ಮಣ್ಣು ಸಾಮಾನ್ಯವಾಗಿ ಹತ್ತಿ, ಸೋಯಾಬೀನ್, ಗೋಧಿ ಮತ್ತು ಕೆಲವು ಬೇಳೆಕಾಳುಗಳಿಗೆ ಸೂಕ್ತವಾಗಿದೆ. ಬಿತ್ತನೆ ಮಾಡುವ ಮೊದಲು ಸ್ಥಳೀಯ ಮಣ್ಣಿನ ಪರೀಕ್ಷೆಯಿಂದ ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಿ.",
+        ml: "കറുത്ത മണ്ണ് സാധാരണയായി പരുത്തി, സോയാബീൻ, ഗോതമ്പ്, ചില പയർവർഗ്ഗങ്ങൾ എന്നിവയ്ക്ക് അനുയോജ്യമാണ്. വിതയ്ക്കുന്നതിന് മുമ്പ് പ്രാദേശിക മണ്ണ് പരിശോധനയിലൂടെ സ്ഥിരീകരിക്കുക."
+    },
+
+    paddy: {
+        en: "Paddy needs good water availability and warm temperature. Sowing or transplanting time depends on your local season. Always use certified seed varieties.",
+        hi: "धान के लिए पर्याप्त पानी और गर्म तापमान आवश्यक है। बुवाई या रोपाई का समय आपके स्थानीय मौसम पर निर्भर करता है। हमेशा प्रमाणित बीज किस्मों का उपयोग करें।",
+        te: "వరికి తగినంత నీరు మరియు వెచ్చని ఉష్ణోగ్రత అవసరం. నాటే సమయం మీ స్థానిక సీజన్‌పై ఆధారపడి ఉంటుంది. ఎల్లప్పుడూ ధృవీకరించిన విత్తన రకాలను వాడండి.",
+        ta: "நெல்லுக்கு போதிய நீர் மற்றும் வெதுவெதுப்பான வெப்பநிலை தேவை. நடவு நேரம் உங்கள் உள்ளூர் பருவத்தைப் பொறுத்தது. எப்போதும் சான்றளிக்கப்பட்ட விதை வகைகளைப் பயன்படுத்தவும்.",
+        kn: "ಭತ್ತಕ್ಕೆ ಸಾಕಷ್ಟು ನೀರು ಮತ್ತು ಬೆಚ್ಚಗಿನ ತಾಪಮಾನ ಬೇಕು. ನಾಟಿ ಸಮಯ ನಿಮ್ಮ ಸ್ಥಳೀಯ ಋತುವಿನ ಮೇಲೆ ಅವಲಂಬಿತವಾಗಿದೆ. ಯಾವಾಗಲೂ ಪ್ರಮಾಣೀಕೃತ ಬೀಜ ತಳಿಗಳನ್ನು ಬಳಸಿ.",
+        ml: "നെല്ലിന് നല്ല ജലലഭ്യതയും ചൂടുള്ള കാലാവസ്ഥയും ആവശ്യമാണ്. നടീൽ സമയം നിങ്ങളുടെ പ്രാദേശിക സീസണിനെ ആശ്രയിച്ചിരിക്കുന്നു. എപ്പോഴും സാക്ഷ്യപ്പെടുത്തിയ വിത്ത് ഇനങ്ങൾ ഉപയോഗിക്കുക."
+    },
+
+    fertilizer: {
+        en: "Choose fertilizer based on a soil test. Apply basal dose at sowing, and top-dress nitrogen in split doses during active growth. Avoid over-application.",
+        hi: "मिट्टी परीक्षण के आधार पर उर्वरक चुनें। बुवाई के समय आधार खुराक डालें, और सक्रिय बढ़वार के दौरान नाइट्रोजन को विभाजित मात्रा में ऊपर से डालें। अधिक मात्रा में उपयोग न करें।",
+        te: "మట్టి పరీక్ష ఆధారంగా ఎరువును ఎంచుకోండి. విత్తే సమయంలో ప్రాథమిక మోతాదు వేయండి, మొక్క పెరుగుతున్నప్పుడు నత్రజనిని విభజించి పైపాటుగా వేయండి. ఎక్కువగా వాడకండి.",
+        ta: "மண் பரிசோதனையின் அடிப்படையில் உரத்தைத் தேர்ந்தெடுக்கவும். விதைக்கும் போது அடிப்படை உரம் இடவும், வளர்ச்சியின் போது நைட்ரஜனை பிரித்து மேல் உரமாக இடவும். அதிகமாக பயன்படுத்த வேண்டாம்.",
+        kn: "ಮಣ್ಣಿನ ಪರೀಕ್ಷೆಯ ಆಧಾರದ ಮೇಲೆ ಗೊಬ್ಬರವನ್ನು ಆಯ್ಕೆ ಮಾಡಿ. ಬಿತ್ತನೆಯ ಸಮಯದಲ್ಲಿ ಮೂಲ ಡೋಸ್ ಹಾಕಿ, ಬೆಳವಣಿಗೆಯ ಸಮಯದಲ್ಲಿ ಸಾರಜನಕವನ್ನು ವಿಭಜಿಸಿ ಮೇಲುಗೊಬ್ಬರವಾಗಿ ನೀಡಿ. ಅತಿಯಾಗಿ ಬಳಸಬೇಡಿ.",
+        ml: "മണ്ണ് പരിശോധനയുടെ അടിസ്ഥാനത്തിൽ വളം തിരഞ്ഞെടുക്കുക. വിതയ്ക്കുമ്പോൾ അടിസ്ഥാന ഡോസ് നൽകുക, വളർച്ചാ ഘട്ടത്തിൽ നൈട്രജൻ വിഭജിച്ച് മുകളിൽ നൽകുക. അമിതമായി ഉപയോഗിക്കരുത്."
+    },
+
+    seed: {
+        en: "Choose certified, disease-free seed varieties recommended for your soil, rainfall and season. Treat seeds before sowing if advised locally.",
+        hi: "अपनी मिट्टी, वर्षा और मौसम के लिए अनुशंसित प्रमाणित, रोगमुक्त बीज किस्मों का चयन करें। यदि स्थानीय सलाह हो तो बुवाई से पहले बीज उपचार करें।",
+        te: "మీ మట్టి, వర్షపాతం మరియు సీజన్‌కు సిఫారసు చేయబడిన ధృవీకరించిన, వ్యాధి రహిత విత్తన రకాలను ఎంచుకోండి. స్థానికంగా సూచించినట్లయితే విత్తే ముందు విత్తన శుద్ధి చేయండి.",
+        ta: "உங்கள் மண், மழைப்பொழிவு மற்றும் பருவத்திற்கு பரிந்துரைக்கப்பட்ட சான்றளிக்கப்பட்ட, நோயற்ற விதை வகைகளைத் தேர்ந்தெடுக்கவும். உள்ளூர் ஆலோசனை இருந்தால் விதைப்பதற்கு முன் விதை சிகிச்சை செய்யவும்.",
+        kn: "ನಿಮ್ಮ ಮಣ್ಣು, ಮಳೆ ಮತ್ತು ಋತುವಿಗೆ ಶಿಫಾರಸು ಮಾಡಲಾದ ಪ್ರಮಾಣೀಕೃತ, ರೋಗ ಮುಕ್ತ ಬೀಜ ತಳಿಗಳನ್ನು ಆಯ್ಕೆಮಾಡಿ. ಸ್ಥಳೀಯ ಸಲಹೆ ಇದ್ದರೆ ಬಿತ್ತನೆಗೆ ಮೊದಲು ಬೀಜ ಸಂಸ್ಕರಣೆ ಮಾಡಿ.",
+        ml: "നിങ്ങളുടെ മണ്ണ്, മഴ, സീസൺ എന്നിവയ്ക്ക് ശുപാർശ ചെയ്യുന്ന സാക്ഷ്യപ്പെടുത്തിയ, രോഗരഹിത വിത്ത് ഇനങ്ങൾ തിരഞ്ഞെടുക്കുക. പ്രാദേശിക നിർദ്ദേശമുണ്ടെങ്കിൽ വിതയ്ക്കുന്നതിന് മുമ്പ് വിത്ത് സംസ്കരണം നടത്തുക."
+    },
+
+    pest: {
+        en: "Check the crop regularly for pest symptoms. Identify the pest correctly first, prefer integrated pest management, and apply pesticide only at the recommended dose and stage.",
+        hi: "फसल की नियमित जांच कर कीट लक्षणों को पहचानें। पहले कीट की सही पहचान करें, एकीकृत कीट प्रबंधन को प्राथमिकता दें, और केवल अनुशंसित मात्रा व चरण में कीटनाशक डालें।",
+        te: "పంటను క్రమం తప్పకుండా పరిశీలించి పురుగుల లక్షణాలను గుర్తించండి. మొదట పురుగును సరిగ్గా గుర్తించండి, సమీకృత పురుగుల నిర్వహణకు ప్రాధాన్యత ఇవ్వండి, సిఫారసు చేసిన మోతాదులో మాత్రమే మందు వాడండి.",
+        ta: "பயிரை தவறாமல் ஆய்வு செய்து பூச்சி அறிகுறிகளை கண்டறியவும். முதலில் பூச்சியை சரியாக அடையாளம் காணவும், ஒருங்கிணைந்த பூச்சி மேலாண்மையை விரும்பவும், பரிந்துரைக்கப்பட்ட அளவில் மட்டும் பூச்சிக்கொல்லியை பயன்படுத்தவும்.",
+        kn: "ಬೆಳೆಯನ್ನು ನಿಯಮಿತವಾಗಿ ಪರಿಶೀಲಿಸಿ ಕೀಟ ಲಕ್ಷಣಗಳನ್ನು ಗುರುತಿಸಿ. ಮೊದಲು ಕೀಟವನ್ನು ಸರಿಯಾಗಿ ಗುರುತಿಸಿ, ಸಮಗ್ರ ಕೀಟ ನಿರ್ವಹಣೆಗೆ ಆದ್ಯತೆ ನೀಡಿ, ಶಿಫಾರಸು ಮಾಡಿದ ಪ್ರಮಾಣದಲ್ಲಿ ಮಾತ್ರ ಕೀಟನಾಶಕ ಬಳಸಿ.",
+        ml: "വിളയെ പതിവായി പരിശോധിച്ച് കീട ലക്ഷണങ്ങൾ കണ്ടെത്തുക. ആദ്യം കീടത്തെ ശരിയായി തിരിച്ചറിയുക, സംയോജിത കീട നിയന്ത്രണത്തിന് മുൻഗണന നൽകുക, ശുപാർശ ചെയ്ത അളവിൽ മാത്രം കീടനാശിനി ഉപയോഗിക്കുക."
+    },
+
+    soilGeneral: {
+        en: "Important soil factors are soil type, pH, nitrogen, phosphorus, potassium, organic matter and moisture. A laboratory soil test gives more reliable results than image analysis alone.",
+        hi: "महत्वपूर्ण मिट्टी कारक हैं: मिट्टी का प्रकार, पीएच, नाइट्रोजन, फास्फोरस, पोटैशियम, जैविक पदार्थ और नमी। प्रयोगशाला मिट्टी परीक्षण छवि विश्लेषण से अधिक विश्वसनीय परिणाम देता है।",
+        te: "ముఖ్యమైన మట్టి అంశాలు: మట్టి రకం, pH, నత్రజని, భాస్వరం, పొటాషియం, సేంద్రియ పదార్థం మరియు తేమ. ప్రయోగశాల మట్టి పరీక్ష చిత్ర విశ్లేషణ కంటే మరింత విశ్వసనీయమైన ఫలితాలను ఇస్తుంది.",
+        ta: "முக்கியமான மண் காரணிகள்: மண் வகை, pH, நைட்ரஜன், பாஸ்பரஸ், பொட்டாசியம், கரிமப் பொருள் மற்றும் ஈரப்பதம். ஆய்வகச் சோதனை படப் பகுப்பாய்வை விட நம்பகமான முடிவுகளைத் தரும்.",
+        kn: "ಪ್ರಮುಖ ಮಣ್ಣಿನ ಅಂಶಗಳು: ಮಣ್ಣಿನ ಪ್ರಕಾರ, pH, ಸಾರಜನಕ, ರಂಜಕ, ಪೊಟ್ಯಾಷಿಯಂ, ಸಾವಯವ ವಸ್ತು ಮತ್ತು ತೇವಾಂಶ. ಪ್ರಯೋಗಾಲಯ ಮಣ್ಣಿನ ಪರೀಕ್ಷೆ ಚಿತ್ರ ವಿಶ್ಲೇಷಣೆಗಿಂತ ಹೆಚ್ಚು ವಿಶ್ವಾಸಾರ್ಹ ಫಲಿತಾಂಶ ನೀಡುತ್ತದೆ.",
+        ml: "പ്രധാന മണ്ണ് ഘടകങ്ങൾ: മണ്ണിന്റെ തരം, pH, നൈട്രജൻ, ഫോസ്ഫറസ്, പൊട്ടാസ്യം, ജൈവവസ്തു, ഈർപ്പം. ലബോറട്ടറി മണ്ണ് പരിശോധന ചിത്ര വിശകലനത്തേക്കാൾ വിശ്വസനീയമായ ഫലങ്ങൾ നൽകുന്നു."
+    },
+
+    fallback: {
+        en: "I can help with crop selection, seed recommendation, soil analysis, fertilizer guidance, pest management, disease detection and farming seasons. Please ask a specific agriculture question.",
+        hi: "मैं फसल चयन, बीज सिफारिश, मिट्टी विश्लेषण, उर्वरक मार्गदर्शन, कीट प्रबंधन, रोग पहचान और बुवाई मौसम में मदद कर सकता हूं। कृपया कोई विशिष्ट कृषि प्रश्न पूछें।",
+        te: "నేను పంట ఎంపిక, విత్తన సిఫారసు, మట్టి విశ్లేషణ, ఎరువుల మార్గదర్శకత్వం, పురుగుల నిర్వహణ, వ్యాధి గుర్తింపు మరియు సాగు కాలాలలో సహాయం చేయగలను. దయచేసి నిర్దిష్ట వ్యవసాయ ప్రశ్న అడగండి.",
+        ta: "பயிர் தேர்வு, விதை பரிந்துரை, மண் பகுப்பாய்வு, உர வழிகாட்டுதல், பூச்சி மேலாண்மை, நோய் கண்டறிதல் மற்றும் விவசாய பருவங்களில் நான் உதவ முடியும். தயவுசெய்து ஒரு குறிப்பிட்ட விவசாய கேள்வியைக் கேளுங்கள்.",
+        kn: "ಬೆಳೆ ಆಯ್ಕೆ, ಬೀಜ ಶಿಫಾರಸು, ಮಣ್ಣಿನ ವಿಶ್ಲೇಷಣೆ, ಗೊಬ್ಬರ ಮಾರ್ಗದರ್ಶನ, ಕೀಟ ನಿರ್ವಹಣೆ, ರೋಗ ಪತ್ತೆ ಮತ್ತು ಬೇಸಾಯ ಋತುಗಳಲ್ಲಿ ನಾನು ಸಹಾಯ ಮಾಡಬಲ್ಲೆ. ದಯವಿಟ್ಟು ನಿರ್ದಿಷ್ಟ ಕೃಷಿ ಪ್ರಶ್ನೆ ಕೇಳಿ.",
+        ml: "വിള തിരഞ്ഞെടുപ്പ്, വിത്ത് ശുപാർശ, മണ്ണ് വിശകലനം, വള മാർഗ്ഗനിർദ്ദേശം, കീട നിയന്ത്രണം, രോഗ കണ്ടെത്തൽ, കൃഷി സീസണുകൾ എന്നിവയിൽ എനിക്ക് സഹായിക്കാനാകും. ദയവായി ഒരു നിർദ്ദിഷ്ട കാർഷിക ചോദ്യം ചോദിക്കുക."
+    },
+
+    soilAnalysisSpeech: {
+        en: "Attention farmer. The scan shows {soil}. Soil pH is around {ph}. Nitrogen is {n}, Phosphorus is {p}, and Potassium is {k}. The recommended crop for this soil is {crop}. Apply basal fertilizer at sowing time, and give the next dose during active growth stage. Use pesticide only if you actually see pest damage, and always at the recommended dose. This is a demo estimate — please confirm with a local agriculture officer before acting.",
+        hi: "ध्यान दें किसान भाई। स्कैन के अनुसार यह {soil} है। मिट्टी का पीएच लगभग {ph} है। नाइट्रोजन {n}, फास्फोरस {p}, और पोटैशियम {k} है। इस मिट्टी के लिए अनुशंसित फसल {crop} है। बुवाई के समय आधार उर्वरक डालें, और सक्रिय बढ़वार के चरण में अगली खुराक दें। कीटनाशक तभी डालें जब वास्तव में कीट क्षति दिखे, और हमेशा अनुशंसित मात्रा में। यह एक डेमो अनुमान है — कार्य करने से पहले कृपया स्थानीय कृषि अधिकारी से पुष्टि करें।",
+        te: "రైతు సోదరా, దయచేసి వినండి. స్కాన్ ప్రకారం ఇది {soil}. మట్టి pH సుమారు {ph}. నత్రజని {n}, భాస్వరం {p}, పొటాషియం {k} ఉన్నాయి. ఈ మట్టికి సిఫారసు చేసిన పంట {crop}. విత్తే సమయంలో ప్రాథమిక ఎరువు వేయండి, మొక్క చురుకుగా పెరిగే దశలో తదుపరి మోతాదు ఇవ్వండి. పురుగుల నష్టం నిజంగా కనిపిస్తేనే పురుగుమందు వాడండి, ఎల్లప్పుడూ సిఫారసు చేసిన మోతాదులో మాత్రమే. ఇది కేవలం డెమో అంచనా — చర్య తీసుకునే ముందు స్థానిక వ్యవసాయ అధికారిని సంప్రదించండి.",
+        ta: "விவசாயி நண்பரே கவனிக்கவும். ஸ்கேன் இதை காட்டுகிறது {soil}. மண்ணின் pH சுமார் {ph}. நைட்ரஜன் {n}, பாஸ்பரஸ் {p}, பொட்டாசியம் {k} உள்ளது. இந்த மண்ணுக்கு பரிந்துரைக்கப்படும் பயிர் {crop}. விதைக்கும் நேரத்தில் அடிப்படை உரம் இடவும், வளர்ச்சி நிலையில் அடுத்த மோதாதை கொடுக்கவும். உண்மையில் பூச்சி சேதம் தெரிந்தால் மட்டும் பூச்சிக்கொல்லி பயன்படுத்தவும், எப்போதும் பரிந்துரைக்கப்பட்ட அளவில். இது ஒரு டெமோ மதிப்பீடு — செயல்படுவதற்கு முன் உள்ளூர் விவசாய அதிகாரியை அணுகவும்.",
+        kn: "ರೈತ ಬಾಂಧವರೇ ಗಮನಿಸಿ. ಸ್ಕ್ಯಾನ್ ಪ್ರಕಾರ ಇದು {soil}. ಮಣ್ಣಿನ pH ಸುಮಾರು {ph}. ಸಾರಜನಕ {n}, ರಂಜಕ {p}, ಪೊಟ್ಯಾಷಿಯಂ {k} ಇದೆ. ಈ ಮಣ್ಣಿಗೆ ಶಿಫಾರಸು ಮಾಡಿದ ಬೆಳೆ {crop}. ಬಿತ್ತನೆಯ ಸಮಯದಲ್ಲಿ ಮೂಲ ಗೊಬ್ಬರ ಹಾಕಿ, ಬೆಳವಣಿಗೆಯ ಹಂತದಲ್ಲಿ ಮುಂದಿನ ಡೋಸ್ ನೀಡಿ. ನಿಜವಾಗಿಯೂ ಕೀಟ ಹಾನಿ ಕಂಡರೆ ಮಾತ್ರ ಕೀಟನಾಶಕ ಬಳಸಿ, ಯಾವಾಗಲೂ ಶಿಫಾರಸು ಮಾಡಿದ ಪ್ರಮಾಣದಲ್ಲಿ. ಇದು ಡೆಮೊ ಅಂದಾಜು — ಕ್ರಮ ಕೈಗೊಳ್ಳುವ ಮೊದಲು ಸ್ಥಳೀಯ ಕೃಷಿ ಅಧಿಕಾರಿಯನ್ನು ಸಂಪರ್ಕಿಸಿ.",
+        ml: "കർഷക സുഹൃത്തേ ശ്രദ്ധിക്കുക. സ്കാൻ പ്രകാരം ഇത് {soil} ആണ്. മണ്ണിന്റെ pH ഏകദേശം {ph} ആണ്. നൈട്രജൻ {n}, ഫോസ്ഫറസ് {p}, പൊട്ടാസ്യം {k} ഉണ്ട്. ഈ മണ്ണിന് ശുപാർശ ചെയ്യുന്ന വിള {crop} ആണ്. വിതയ്ക്കുന്ന സമയത്ത് അടിസ്ഥാന വളം നൽകുക, വളർച്ചാ ഘട്ടത്തിൽ അടുത്ത ഡോസ് നൽകുക. യഥാർത്ഥത്തിൽ കീട നാശം കണ്ടാൽ മാത്രം കീടനാശിനി ഉപയോഗിക്കുക, എപ്പോഴും ശുപാർശ ചെയ്ത അളവിൽ. ഇത് ഒരു ഡെമോ കണക്കാണ് — നടപടിയെടുക്കുന്നതിന് മുമ്പ് പ്രാദേശിക കാർഷിക ഓഫീസറുമായി സ്ഥിരീകരിക്കുക."
+    },
+
+    diseaseSpeech: {
+        en: "Attention farmer. The leaf scan shows a possible issue: {issue}. Recommendation: {advice} Please confirm with an agricultural expert before applying any pesticide.",
+        hi: "ध्यान दें किसान भाई। पत्ती स्कैन में संभावित समस्या दिखी है: {issue}। सुझाव: {advice} कोई भी कीटनाशक डालने से पहले कृपया कृषि विशेषज्ञ से पुष्टि करें।",
+        te: "రైతు సోదరా వినండి. ఆకు స్కాన్‌లో ఈ సమస్య కనిపించింది: {issue}. సూచన: {advice} ఏదైనా పురుగుమందు వేసే ముందు దయచేసి వ్యవసాయ నిపుణుడిని సంప్రదించండి.",
+        ta: "விவசாயி நண்பரே கவனிக்கவும். இலை ஸ்கேனில் இந்த சிக்கல் தெரிகிறது: {issue}. பரிந்துரை: {advice} ஏதேனும் பூச்சிக்கொல்லியை பயன்படுத்துவதற்கு முன் விவசாய நிபுணரிடம் உறுதிப்படுத்தவும்.",
+        kn: "ರೈತ ಬಾಂಧವರೇ ಗಮನಿಸಿ. ಎಲೆ ಸ್ಕ್ಯಾನ್‌ನಲ್ಲಿ ಈ ಸಮಸ್ಯೆ ಕಂಡುಬಂದಿದೆ: {issue}. ಶಿಫಾರಸು: {advice} ಯಾವುದೇ ಕೀಟನಾಶಕ ಬಳಸುವ ಮೊದಲು ದಯವಿಟ್ಟು ಕೃಷಿ ತಜ್ಞರನ್ನು ಸಂಪರ್ಕಿಸಿ.",
+        ml: "കർഷക സുഹൃത്തേ ശ്രദ്ധിക്കുക. ഇല സ്കാനിൽ ഈ പ്രശ്നം കാണുന്നു: {issue}. ശുപാർശ: {advice} ഏതെങ്കിലും കീടനാശിനി ഉപയോഗിക്കുന്നതിന് മുമ്പ് ദയവായി ഒരു കാർഷിക വിദഗ്ധനെ സമീപിക്കുക."
+    },
+
+    readyToListen: {
+        en: "Ready to listen", hi: "सुनने के लिए तैयार", te: "వినడానికి సిద్ధంగా ఉంది",
+        ta: "கேட்க தயார்", kn: "ಕೇಳಲು ಸಿದ್ಧ", ml: "കേൾക്കാൻ തയ്യാറാണ്"
+    },
+
+    listening: {
+        en: "🎤 Listening... speak in any language", hi: "🎤 सुन रहा हूं... किसी भी भाषा में बोलें",
+        te: "🎤 వింటున్నాను... ఏ భాషలోనైనా మాట్లాడండి", ta: "🎤 கேட்கிறேன்... எந்த மொழியிலும் பேசுங்கள்",
+        kn: "🎤 ಕೇಳುತ್ತಿದ್ದೇನೆ... ಯಾವುದೇ ಭಾಷೆಯಲ್ಲಿ ಮಾತನಾಡಿ", ml: "🎤 കേൾക്കുന്നു... ഏത് ഭാഷയിലും സംസാരിക്കുക"
+    },
+
+    noSpeechDetected: {
+        en: "I could not hear you clearly. Please tap the microphone and try again.",
+        hi: "मैं आपको स्पष्ट रूप से नहीं सुन सका। कृपया माइक्रोफ़ोन दबाकर फिर से प्रयास करें।",
+        te: "మీరు చెప్పింది స్పష్టంగా వినిపించలేదు. దయచేసి మైక్రోఫోన్ నొక్కి మళ్ళీ ప్రయత్నించండి.",
+        ta: "உங்களை தெளிவாக கேட்க முடியவில்லை. மைக்ரோஃபோனை தட்டி மீண்டும் முயற்சிக்கவும்.",
+        kn: "ನಿಮ್ಮನ್ನು ಸ್ಪಷ್ಟವಾಗಿ ಕೇಳಲಾಗಲಿಲ್ಲ. ದಯವಿಟ್ಟು ಮೈಕ್ರೊಫೋನ್ ಒತ್ತಿ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.",
+        ml: "നിങ്ങളെ വ്യക്തമായി കേൾക്കാനായില്ല. ദയവായി മൈക്രോഫോൺ അമർത്തി വീണ്ടും ശ്രമിക്കുക."
+    },
+
+    notSupported: {
+        en: "Voice is not supported in this browser. Please use Chrome on a phone or computer.",
+        hi: "इस ब्राउज़र में आवाज़ सुविधा उपलब्ध नहीं है। कृपया फोन या कंप्यूटर पर Chrome का उपयोग करें।",
+        te: "ఈ బ్రౌజర్‌లో వాయిస్ సదుపాయం లేదు. దయచేసి ఫోన్ లేదా కంప్యూటర్‌లో Chrome వాడండి.",
+        ta: "இந்த உலாவியில் குரல் வசதி இல்லை. தொலைபேசி அல்லது கணினியில் Chrome ஐப் பயன்படுத்தவும்.",
+        kn: "ಈ ಬ್ರೌಸರ್‌ನಲ್ಲಿ ಧ್ವನಿ ಸೌಲಭ್ಯ ಇಲ್ಲ. ದಯವಿಟ್ಟು ಫೋನ್ ಅಥವಾ ಕಂಪ್ಯೂಟರ್‌ನಲ್ಲಿ Chrome ಬಳಸಿ.",
+        ml: "ഈ ബ്രൗസറിൽ വോയ്സ് സൗകര്യം ലഭ്യമല്ല. ദയവായി ഫോണിലോ കമ്പ്യൂട്ടറിലോ Chrome ഉപയോഗിക്കുക."
+    },
+
+    sessionExpired: {
+        en: "Your session has ended after 40 minutes for your security. Please open the app again to continue.",
+        hi: "सुरक्षा कारणों से आपका सत्र 40 मिनट बाद समाप्त हो गया है। जारी रखने के लिए कृपया ऐप फिर से खोलें।",
+        te: "మీ భద్రత కోసం 40 నిమిషాల తర్వాత మీ సెషన్ ముగిసింది. కొనసాగించడానికి దయచేసి యాప్‌ని మళ్ళీ తెరవండి.",
+        ta: "உங்கள் பாதுகாப்பிற்காக 40 நிமிடங்களுக்குப் பிறகு உங்கள் அமர்வு முடிந்தது. தொடர பயன்பாட்டை மீண்டும் திறக்கவும்.",
+        kn: "ನಿಮ್ಮ ಭದ್ರತೆಗಾಗಿ 40 ನಿಮಿಷಗಳ ನಂತರ ನಿಮ್ಮ ಸೆಷನ್ ಮುಗಿದಿದೆ. ಮುಂದುವರಿಸಲು ದಯವಿಟ್ಟು ಅಪ್ಲಿಕೇಶನ್ ಅನ್ನು ಮತ್ತೆ ತೆರೆಯಿರಿ.",
+        ml: "നിങ്ങളുടെ സുരക്ഷയ്ക്കായി 40 മിനിറ്റിന് ശേഷം സെഷൻ അവസാനിച്ചു. തുടരാൻ ദയവായി ആപ്പ് വീണ്ടും തുറക്കുക."
+    }
+
+};
+
+// T(key) returns the translated string for the current language
+function T(key){
+    const entry = translations[key];
+    if(!entry) return "";
+    return entry[currentLang] || entry.en;
+}
+
+
+/* =====================================================
+   AI CHAT
+===================================================== */
+
+function sendMessage(){
+
+    const input =
+        document.getElementById("chatInput");
+
+    const text =
+        input.value.trim();
+
+    if(!text) return;
+
+
+    addMessage(text,"user");
+
+    input.value="";
+
+
+    setTimeout(function(){
+
+        let answer =
+            getAIResponse(text);
+
+        addMessage(answer,"bot");
+
+        speak(answer);
+
+    },600);
+
+}
+
+
+function addMessage(text,type){
+
+    const messages =
+        document.getElementById("messages");
+
+    const div =
+        document.createElement("div");
+
+    div.className =
+        "message " + type;
+
+    div.innerText =
+        text;
+
+    messages.appendChild(div);
+
+    messages.scrollTop =
+        messages.scrollHeight;
+
+}
+
+
+// Keyword lists in every supported language, so a farmer's own words
+// (typed OR spoken and transcribed) are recognised directly - no
+// language selection required.
+const intentKeywords = {
+
+    blackSoil: {
+        en: ["black soil"],
+        hi: ["काली मिट्टी"],
+        te: ["నల్ల నేల", "నల్లరేగడి"],
+        ta: ["கருப்பு மண்"],
+        kn: ["ಕಪ್ಪು ಮಣ್ಣು"],
+        ml: ["കറുത്ത മണ്ണ്"]
+    },
+
+    paddy: {
+        en: ["paddy", "rice"],
+        hi: ["धान", "चावल"],
+        te: ["వరి"],
+        ta: ["நெல்", "அரிசி"],
+        kn: ["ಭತ್ತ", "ಅಕ್ಕಿ"],
+        ml: ["നെല്ല്", "അരി"]
+    },
+
+    fertilizer: {
+        en: ["fertilizer", "fertiliser"],
+        hi: ["उर्वरक", "खाद"],
+        te: ["ఎరువు"],
+        ta: ["உரம்"],
+        kn: ["ಗೊಬ್ಬರ"],
+        ml: ["വളം"]
+    },
+
+    seed: {
+        en: ["seed"],
+        hi: ["बीज"],
+        te: ["విత్తనం", "విత్తనాలు"],
+        ta: ["விதை"],
+        kn: ["ಬೀಜ"],
+        ml: ["വിത്ത്"]
+    },
+
+    pest: {
+        en: ["pest", "insect"],
+        hi: ["कीट", "कीड़े"],
+        te: ["పురుగు"],
+        ta: ["பூச்சி"],
+        kn: ["ಕೀಟ"],
+        ml: ["കീടം"]
+    },
+
+    soilGeneral: {
+        en: ["soil"],
+        hi: ["मिट्टी"],
+        te: ["నేల", "మట్టి"],
+        ta: ["மண்"],
+        kn: ["ಮಣ್ಣು"],
+        ml: ["മണ്ണ്"]
+    }
+
+};
+
+function matchIntent(question){
+
+    const q = question.toLowerCase();
+
+    for(const intent in intentKeywords){
+        const langSets = intentKeywords[intent];
+        for(const lang in langSets){
+            for(const kw of langSets[lang]){
+                if(q.includes(kw.toLowerCase())){
+                    return intent;
+                }
+            }
+        }
+    }
+
+    return null;
+
+}
+
+
+function getAIResponse(question){
+
+    const intent = matchIntent(question);
+
+    if(intent){
+        return T(intent);
+    }
+
+    return T("fallback");
+
+}
+
+
+/* =====================================================
+   VOICE ASSISTANT
+===================================================== */
+
+function startVoice(){
+
+    const status =
+        document.getElementById("voiceStatus");
+
+
+    if(!("webkitSpeechRecognition" in window) &&
+       !("SpeechRecognition" in window)){
+
+        status.innerText = T("notSupported");
+        speak(T("notSupported"));
+
+        return;
+
+    }
+
+    // Try the farmer's last-known language first (fastest for repeat
+    // use), then quietly try every other supported language until one
+    // of them actually picks up real speech. The farmer never has to
+    // touch the language dropdown - they just tap and talk.
+    const order = [currentLang].concat(
+        Object.keys(speechLangMap).filter(l => l !== currentLang)
+    );
+
+    status.innerText = T("listening");
+
+    attemptRecognition(order, 0);
+
+}
+
+
+function attemptRecognition(langOrder, index){
+
+    const status =
+        document.getElementById("voiceStatus");
+
+    if(index >= langOrder.length){
+
+        status.innerText = T("noSpeechDetected");
+        speak(T("noSpeechDetected"));
+
+        return;
+
+    }
+
+    const SpeechRecognition =
+        window.SpeechRecognition ||
+        window.webkitSpeechRecognition;
+
+    const recognition =
+        new SpeechRecognition();
+
+    recognition.lang = speechLangMap[langOrder[index]];
+
+    let heardSomething = false;
+
+    recognition.start();
+
+    status.innerText = T("listening");
+
+
+    recognition.onresult = function(event){
+
+        const speech =
+            event.results[0][0].transcript;
+
+        if(speech && speech.trim()){
+
+            heardSomething = true;
+
+            // Figure out the real language from what was actually
+            // said, regardless of which language we guessed first.
+            const detected = detectScriptLang(speech);
+            setLanguage(detected, false);
+
+            status.innerText = "🗣️ " + speech;
+
+            document.getElementById("chatInput").value = speech;
+
+            sendMessage();
+
+        }
+
+    };
+
+
+    recognition.onerror = function(){
+        // handled uniformly in onend below
+    };
+
+
+    recognition.onend = function(){
+
+        if(heardSomething){
+
+            setTimeout(function(){
+                status.innerText = T("readyToListen");
+            }, 2000);
+
+        }else{
+            // silently try the next language - no extra tap needed
+            attemptRecognition(langOrder, index + 1);
+        }
+
+    };
+
+}
+
+
+/* =====================================================
+   IMAGE ANALYSIS DEMO
+===================================================== */
+
+function analyzeImage(event){
+
+    const file =
+        event.target.files[0];
+
+    if(!file) return;
+
+
+    const preview =
+        document.getElementById("preview");
+
+    preview.src =
+        URL.createObjectURL(file);
+
+    preview.style.display="block";
+
+
+    document.getElementById("soilType").innerText =
+        "Analyzing...";
+
+
+    setTimeout(function(){
+
+        /*
+          DEMO RESULT
+
+          Actual AI/ML model should be connected
+          here in the backend.
+        */
+
+        document.getElementById("soilType").innerText =
+            "Black / Loamy Soil";
+
+        document.getElementById("soilPH").innerText =
+            "6.5 – 7.5*";
+
+        document.getElementById("nitrogen").innerText =
+            "Medium*";
+
+        document.getElementById("phosphorus").innerText =
+            "Medium*";
+
+        document.getElementById("potassium").innerText =
+            "High*";
+
+        document.getElementById("cropResult").innerText =
+            "Cotton / Soybean*";
+
+        // Speak the full instruction aloud to the farmer, translated
+        // into whichever language is currently selected.
+        const spoken = T("soilAnalysisSpeech")
+            .replace("{soil}", document.getElementById("soilType").innerText)
+            .replace("{ph}", document.getElementById("soilPH").innerText)
+            .replace("{n}", document.getElementById("nitrogen").innerText)
+            .replace("{p}", document.getElementById("phosphorus").innerText)
+            .replace("{k}", document.getElementById("potassium").innerText)
+            .replace("{crop}", document.getElementById("cropResult").innerText);
+
+        speak(spoken);
+
+    },1500);
+
+}
+
+
+/* =====================================================
+   DISEASE SCAN DEMO
+===================================================== */
+
+function diseaseScan(event){
+
+    const file =
+        event.target.files[0];
+
+    if(!file) return;
+
+
+    document.getElementById("diseaseStatus").innerText =
+        "Analyzing image...";
+
+
+    setTimeout(function(){
+
+        document.getElementById("diseaseStatus").innerText =
+            "Demo Analysis";
+
+        document.getElementById("diseaseCrop").innerText =
+            "Crop identification pending";
+
+        document.getElementById("diseaseName").innerText =
+            "Possible leaf disease";
+
+        document.getElementById("diseaseAdvice").innerText =
+            "Confirm diagnosis with an agricultural expert before treatment.";
+
+        const spoken = T("diseaseSpeech")
+            .replace("{issue}", document.getElementById("diseaseName").innerText)
+            .replace("{advice}", document.getElementById("diseaseAdvice").innerText);
+
+        speak(spoken);
+
+    },1500);
+
+}
+
+
+/* =====================================================
+   CLOSE POPUPS BY CLICKING OUTSIDE
+===================================================== */
+
+window.onclick=function(event){
+
+    const login =
+        document.getElementById("loginOverlay");
+
+    const signup =
+        document.getElementById("signupOverlay");
+
+
+    if(event.target === login){
+        closeLogin();
+    }
+
+    if(event.target === signup){
+        closeSignup();
+    }
+
+};
+
+</script>
+
+</body>
+</html>
